@@ -1,21 +1,38 @@
 public class Radio {
-    public int currentVolume;
-    protected int radioStation;
+    protected int currentVolume;
+    protected int currentStation;
 
-    public int getRadioStation() {
-        return radioStation;
+    public int getCurrentStation() {
+        return currentStation;
     }
 
-    public void setRadioStation(int newRadioStation) {
-        if (newRadioStation < 0 && newRadioStation > 9) {
-            System.out.println("Нет такой станции");
-        } else {
-            radioStation = newRadioStation;
+    public void setCurrentStation(int currentStation) {
+        if (currentStation < 0) {
+            return;
+
         }
+        if (currentStation > 9) {
+            return;
+        }
+        this.currentStation = currentStation;
+    }
+
+    public int getCurrentVolume() {
+        return currentVolume;
+    }
+
+    public void setCurrentVolume(int currentVolume) {
+
+        if (currentVolume < 0) {
+            return;
+        }
+        if (currentVolume > 10) {
+            return;
+        }
+        this.currentVolume = currentVolume;
     }
 
     public void increaseVolume() {
-
         if (currentVolume < 10) {
             currentVolume = currentVolume + 1;
         }
@@ -23,23 +40,28 @@ public class Radio {
 
     public void decreaseVolume() {
         if (currentVolume > 0) {
-            currentVolume -= 1;
+            currentVolume = currentVolume - 1;
         }
     }
 
-    public void nextStation() {
-        if (radioStation == 9) {
-            radioStation = 0;
+    public void next() {
+        if (currentStation < 9) {
+            currentStation++;
         } else {
-            radioStation = radioStation + 1;
+            currentStation = 0;
         }
+
     }
 
-    public void prevStation() {
-        if (radioStation == 0) {
-            radioStation = 9;
+    public void prev() {
+        if (currentStation > 0) {
+            currentStation--;
         } else {
-            radioStation -= 1;
+            currentStation = 9;
         }
     }
 }
+
+
+
+
